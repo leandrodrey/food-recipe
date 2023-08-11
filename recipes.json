@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Arroz con Pollo",
+        "puntaje": "1",
+        "ingredientes": ["Arroz, Pollo, Verduras"],
+        "pasos": ["Paso 1", "Paso 2", "Paso 3"]
+    },
+    {
+        "id": 2,
+        "name": "Brownie",
+        "puntaje": "4",
+        "ingredientes": ["Chocolate, Masa, Azucar"],
+        "pasos": ["Paso 1", "Paso 2", "Paso 3"]
+    },
+    {
+        "id": 3,
+        "name": "Gnoquis",
+        "puntaje": "4",
+        "ingredientes": ["Harina, Huevo, Queso"],
+        "pasos": ["Paso 1", "Paso 2", "Paso 3"]
+    }
+]
