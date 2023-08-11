@@ -3,7 +3,7 @@ import {RecipeTab} from "@/components";
 
 const recipeDetail = ({ params }) => {
 
-    const id = params.id
+    const {id} = params
 
     return (
         <><RecipeTab/></>
