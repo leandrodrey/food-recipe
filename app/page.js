@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Search from "@/components/Search";
+import {Search, RecipesTable} from "@/components";
 
 export default function Home() {
     return (
@@ -7,10 +7,10 @@ export default function Home() {
             <Search />
             <br />
             <br />
-            <Link href={'/rating'}>Recipes</Link>
+            <Link href={'/rating'}>Rating</Link>
             <br />
             <br />
-            TAbla
+            <RecipesTable />
         </main>
     )
 }
