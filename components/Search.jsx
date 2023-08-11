@@ -1,10 +1,9 @@
 import React from 'react'
 
-const Search = () => {
+export const Search = () => {
     return (
         <>
 
         </>
     )
 }
-export default Search

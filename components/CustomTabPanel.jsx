@@ -2,7 +2,7 @@ import {Box} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 
-function CustomTabPanel(props) {
+export function CustomTabPanel(props) {
     const {children, value, index, ...other} = props;
 
     return (

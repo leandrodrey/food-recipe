@@ -3,7 +3,7 @@ import {useState} from "react";
 import {Box, Tab, Tabs} from "@mui/material";
 import {CustomTabPanel} from "@/components";
 
-const RecipeTab = ({current}) => {
+export const RecipeTab = () => {
 
     const [value, setValue] = useState(0);
 
@@ -30,4 +30,3 @@ const RecipeTab = ({current}) => {
         </>
     )
 }
-export default RecipeTab
