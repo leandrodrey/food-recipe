@@ -1,19 +1,8 @@
+import {getRecipes, addNewRecipe} from "@/src/services/recipes";
 import {NextResponse} from "next/server";
-import {db} from "@/database";
-import {Recipe} from "@/models";
 
 export async function GET() {
-
-    await db.connect();
-    const recipes = await Recipe.find().sort({id: 'ascending'});
-    await db.disconnect();
-
-    let json_response = {
-        status: 200,
-        message: "OK",
-        data: recipes
-    };
-    return new NextResponse(JSON.stringify(json_response));
+    await getRecipes();
 }
 
 const validateRecipeData = (title, rating, ingredients, steps) => {
@@ -46,9 +35,9 @@ const validateRecipeData = (title, rating, ingredients, steps) => {
     return errors;
 };
 
-export async function POST(req) {
+export async function POST(request) {
 
-    const {title, rating, ingredients, steps} = await req.json();
+    const {title, rating, ingredients, steps} = await request.json();
 
     const errors = validateRecipeData(title, rating, ingredients, steps);
 
@@ -56,21 +45,5 @@ export async function POST(req) {
         return new NextResponse(JSON.stringify({message: "Error"}));
     }
 
-    const newRecipe = new Recipe({
-        title,
-        rating,
-        ingredients,
-        steps
-    });
-
-    try {
-        await db.connect();
-        await newRecipe.save();
-        await db.disconnect();
-        return new NextResponse(JSON.stringify({message: "OK"}));
-    } catch (e) {
-        await db.disconnect();
-        return new NextResponse(JSON.stringify({message: "Error"}));
-    }
-
+    await addNewRecipe({title, rating, ingredients, steps});
 }
