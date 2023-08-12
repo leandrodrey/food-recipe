@@ -1,6 +1,9 @@
 import Link from "next/link";
 import {Search, RecipesTable} from "@/components";
 
+const recipes = () => {
+}
+
 export default function Home() {
     return (
         <main>
