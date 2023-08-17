@@ -1,6 +1,6 @@
 import {NextResponse} from "next/server";
-import {db} from "@/src/database";
-import {Recipe} from "@/src/models";
+import {db} from "@/src/backend/database";
+import {Recipe} from "@/src/backend/models";
 
 export async function getRecipes() {
 
@@ -13,8 +13,8 @@ export async function getRecipes() {
         message: "OK",
         data: recipes
     };
-    return new NextResponse(JSON.stringify(json_response));
 
+    return recipes;
 }
 
 export async function addNewRecipe(title, rating, ingredients, steps) {
@@ -52,6 +52,4 @@ export async function getRecipeById(id) {
     return new NextResponse(JSON.stringify(json_response));
 
 }
-
-
 

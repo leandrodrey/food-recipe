@@ -5,7 +5,7 @@ import {useServerInsertedHTML} from 'next/navigation';
 import {CacheProvider} from '@emotion/react';
 import {ThemeProvider} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import {darkTheme} from "src/themes";
+import {darkTheme} from "src/frontend/themes";
 
 export default function ThemeRegistry(props) {
     const {options, children} = props;

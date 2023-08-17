@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {Search, RecipesTable} from "src/components";
+import {Search, RecipesTable} from "src/frontend/components";
 
 const recipes = () => {
 }

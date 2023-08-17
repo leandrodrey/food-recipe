@@ -1,8 +1,18 @@
-import {getRecipes, addNewRecipe} from "@/src/services/recipes";
+import {getRecipes, addNewRecipe} from "@/src/backend/services/recipes";
 import {NextResponse} from "next/server";
+import {Recipe} from "src/backend/models";
 
 export async function GET() {
-    await getRecipes();
+    await db.connect();
+    const recipes = await Recipe.find().sort({id: 'ascending'});
+    await db.disconnect();
+
+    let json_response = {
+        status: 200,
+        message: "OK",
+        data: recipes
+    };
+    return new NextResponse(JSON.stringify(json_response));
 }
 
 const validateRecipeData = (title, rating, ingredients, steps) => {

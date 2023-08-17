@@ -1,6 +1,6 @@
 import {NextResponse} from "next/server";
-import {db, seedData} from "src/database";
-import {Recipe} from "src/models";
+import {db, seedData} from "src/backend/database";
+import {Recipe} from "src/backend/models";
 
 export async function POST(req, res) {
 
