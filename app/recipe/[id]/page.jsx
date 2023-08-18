@@ -1,5 +1,5 @@
 'use client'
-import {RecipeTab} from "@/src/frontend/components/tabs/RecipeTab";
+import {RecipeTab} from "@/src/frontend/components/RecipeTab/RecipeTab";
 
 const recipeDetail = ({ params }) => {
 
