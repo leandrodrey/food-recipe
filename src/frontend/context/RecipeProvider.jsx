@@ -6,10 +6,10 @@ export const RecipeContext = createContext('')
 
 const RecipeProvider = ({children}) => {
 
-    const {recipes, recipe, getRecipes} = useRecipes();
+    const {recipes, recipe, getRecipes, getRecipeById} = useRecipes();
 
     return (
-        <RecipeContext.Provider value={{recipes, recipe, getRecipes}}>
+        <RecipeContext.Provider value={{recipes, recipe, getRecipes, getRecipeById}}>
             {children}
         </RecipeContext.Provider>
     )

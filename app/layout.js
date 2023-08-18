@@ -1,5 +1,6 @@
 import ThemeRegistry from "@/app/ThemeRegistry";
 import RecipeProvider from "@/src/frontend/context/RecipeProvider";
+import Container from "@mui/material/Container";
 
 export const metadata = {
     title: 'Recipes APP',
@@ -12,7 +13,9 @@ export default function RootLayout({children}) {
         <body>
         <ThemeRegistry options={{key: 'mui'}}>
             <RecipeProvider>
-                {children}
+                <Container maxWidth="xs">
+                    {children}
+                </Container>
             </RecipeProvider>
         </ThemeRegistry>
         </body>

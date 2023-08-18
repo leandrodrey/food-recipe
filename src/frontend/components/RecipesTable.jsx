@@ -1,4 +1,4 @@
-import React from 'react'
+import Link from "next/link";
 
 export const RecipesTable = ({recipes}) => {
 
@@ -13,8 +13,8 @@ export const RecipesTable = ({recipes}) => {
                 </thead>
                 <tbody>
                     {recipes.map((recipe) => (
-                        <tr key={recipe.id}>
-                            <td>{recipe.title}</td>
+                        <tr key={recipe._id}>
+                            <td><Link href={`/recipe/${recipe._id}`}>{recipe.title}</Link></td>
                             <td>{recipe.rating}</td>
                         </tr>
                     ))}

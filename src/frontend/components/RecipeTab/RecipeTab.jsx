@@ -3,7 +3,7 @@ import {useState} from "react";
 import {Box, Tab, Tabs} from "@mui/material";
 import {CustomTabPanel} from "@/src/frontend/components/RecipeTab/CustomTabPanel";
 
-export const RecipeTab = () => {
+export const RecipeTab = ({ingredients, steps}) => {
 
     const [value, setValue] = useState(0);
 
@@ -21,10 +21,17 @@ export const RecipeTab = () => {
                     </Tabs>
                 </Box>
                 <CustomTabPanel value={value} index={0}>
-                    Item One
+                    {ingredients.map((ingredient, index) => (
+                        <div key={`${index}-${ingredient}`}>
+                            <p>{ingredient.ingredient}</p>
+                            <p>{ingredient.quantity}</p>
+                        </div>
+                    ))}
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={1}>
-                    Item Two
+                    {steps.map((step, index) => (
+                        <div key={`${index}-${step}`}>{step}</div>
+                    ))}
                 </CustomTabPanel>
             </Box>
         </>

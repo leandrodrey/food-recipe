@@ -1,8 +1,8 @@
 "use client"
-import {useContext, useEffect} from "react";
+import {useContext, useEffect, useState} from "react";
 import Link from "next/link";
 import {RecipeContext} from "@/src/frontend/context/RecipeProvider";
-import {Search, RecipesTable} from "@/src/frontend/components";
+import {Search, RecipesTable, Loader} from "@/src/frontend/components";
 
 export default function Home() {
 
@@ -12,15 +12,21 @@ export default function Home() {
         getRecipes();
     }, []);
 
-    return (
-        <main>
-            <Search />
-            <br />
-            <br />
-            <Link href={'/rating'}>Rating</Link>
-            <br />
-            <br />
-            <RecipesTable recipes={recipes} />
-        </main>
-    )
+    if (recipes) {
+        return (
+            <main>
+                <Search/>
+                <br/>
+                <br/>
+                <Link href={'/rating'}>Ver valoraciones</Link>
+                <br/>
+                <br/>
+                <RecipesTable recipes={recipes}/>
+            </main>
+        )
+    } else {
+        return (
+            <Loader/>
+        )
+    }
 }

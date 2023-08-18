@@ -1,3 +1,4 @@
+"use client"
 import {useState} from 'react'
 
 const UseRecipes = () => {
@@ -15,13 +16,24 @@ const UseRecipes = () => {
         }
     }
 
+    const getRecipeById = async (id) => {
+        try {
+            const response = await fetch(`/api/recipes/${id}`);
+            const data = await response.json();
+            setRecipe(data.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return {
         // Values
         recipes,
         recipe,
 
         // Methods
-        getRecipes
+        getRecipes,
+        getRecipeById
     }
 
 }
