@@ -1,6 +1,6 @@
-import {getRecipes, addNewRecipe} from "@/src/backend/services/recipes";
 import {NextResponse} from "next/server";
-import {Recipe} from "src/backend/models";
+import {db} from "@/src/backend/database";
+import {Recipe} from "@/src/backend/models";
 
 export async function GET() {
     await db.connect();
@@ -12,7 +12,7 @@ export async function GET() {
         message: "OK",
         data: recipes
     };
-    return new NextResponse(JSON.stringify(json_response));
+    return NextResponse.json(json_response)
 }
 
 const validateRecipeData = (title, rating, ingredients, steps) => {
@@ -46,14 +46,49 @@ const validateRecipeData = (title, rating, ingredients, steps) => {
 };
 
 export async function POST(request) {
-
     const {title, rating, ingredients, steps} = await request.json();
-
     const errors = validateRecipeData(title, rating, ingredients, steps);
-
     if (errors.length) {
-        return new NextResponse(JSON.stringify({message: "Error"}));
+        return NextResponse.json({message: "Error"});
     }
 
-    await addNewRecipe({title, rating, ingredients, steps});
+    const newRecipe = new Recipe({
+        title,
+        rating,
+        ingredients,
+        steps
+    });
+
+    try {
+        await db.connect();
+        await newRecipe.save();
+        await db.disconnect();
+        return NextResponse.json({message: "OK"});
+    } catch (e) {
+        await db.disconnect();
+        return NextResponse.json({message: "Error"});
+    }
+}
+
+export async function PUT(request) {
+    const {id, title, rating, ingredients, steps} = await request.json();
+    const errors = validateRecipeData(title, rating, ingredients, steps);
+    if (errors.length) {
+        return NextResponse.json({message: "Error"});
+    }
+
+    try {
+        await db.connect();
+        await Recipe.findByIdAndUpdate(id, {
+            title,
+            rating,
+            ingredients,
+            steps
+        });
+        await db.disconnect();
+        return NextResponse.json({message: "OK"});
+    } catch (e) {
+        await db.disconnect();
+        return NextResponse.json({message: "Error"});
+    }
 }
