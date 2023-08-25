@@ -1,8 +1,8 @@
 'use client'
-import {RecipeTab} from "@/src/frontend/components/RecipeTab/RecipeTab";
 import {useContext, useEffect} from "react";
 import {RecipeContext} from "@/src/frontend/context/RecipeProvider";
-import {Loader} from "@/src/frontend/components";
+import {RecipeTab, RecipeValoration, Loader} from "@/src/frontend/components";
+
 
 const recipeDetail = ({params}) => {
 
@@ -16,7 +16,10 @@ const recipeDetail = ({params}) => {
 
     if (recipe) {
         return (
-            <RecipeTab ingredients={recipe.ingredients} steps={recipe.steps}/>
+            <>
+                <RecipeTab ingredients={recipe.ingredients} steps={recipe.steps}/>
+                <RecipeValoration />
+            </>
         )
     } else {
         return (

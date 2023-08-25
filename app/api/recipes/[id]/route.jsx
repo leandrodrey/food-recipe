@@ -16,3 +16,20 @@ export async function GET(request, { params }) {
     };
     return NextResponse.json(json_response)
 }
+
+export async function PUT(request, { params }) {
+
+    try {
+        const id = params.id;
+        const {rating} = await request.json();
+        await db.connect();
+        await Recipe.findByIdAndUpdate(id, {
+            rating
+        });
+        await db.disconnect();
+        return NextResponse.json({message: "OK"});
+    } catch (e) {
+        await db.disconnect();
+        return NextResponse.json({message: "Error"});
+    }
+}
